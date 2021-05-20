@@ -1,5 +1,6 @@
 from search import *
 
+# 브라우저 생성
 # browser = create_browser()
 # browser = create_browser_view()
 

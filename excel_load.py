@@ -6,15 +6,10 @@ def load_wb(file_name):
     ws = wb.active
     return (wb, ws)
 
-# IARC엑셀에서 카스번호 가져오기
-def bring_casnum_IARC(ws, index):
-    casnum_IARC = ws[f"A{index}"].value 
-    return  casnum_IARC
-
 # 엑셀에서 카스번호 가져오기
-def bring_casnum(ws, no):
-    casnum = ws[f"D{no+1}"].value 
-    return  casnum
+def bring_casnum(ws, col, index):
+    casnum = ws[col+str(index)].value 
+    return casnum
 
 # 엑셀에 원본 데이터 넣기
 def insert_data(ws, data, no):

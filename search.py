@@ -43,8 +43,8 @@ def search_merck(casno, browser):
     search_bar.send_keys(casno)
     search_bar.send_keys(Keys.ENTER)
     
-    xpath_merck = "/html/body/div[3]/div[1]/div[5]/div[1]/div[2]/div/div[2]/div/p[1]/strong"
-    result = wait_loading(xpath_merck, browser)
+    merck_xpath = "/html/body/div[3]/div[1]/div[5]/div[1]/div[2]/div/div[2]/div/p[1]/strong"
+    result = wait_loading(merck_xpath, browser)
 
     if "0 results" in result.text:
         return "X"
@@ -61,8 +61,8 @@ def search_crc(casno, browser):
     search_button = browser.find_element_by_id("searchForm:j_idt135")
     search_button.click()
 
-    xpath_crc = "//*[@id='resultsForm:j_idt111']"
-    result = wait_loading(xpath_crc, browser)
+    crc_xpath = "//*[@id='resultsForm:j_idt111']"
+    result = wait_loading(crc_xpath, browser)
     
     if "No records found" in result.text:
         return "X"
@@ -87,9 +87,9 @@ def search_echa_bio(casno, browser):
     accept_btn = browser.find_element_by_id("_viewsubstances_WAR_echarevsubstanceportlet_acceptDisclaimerButton")
     accept_btn.click()
 
-    xpath_search_echa = "//*[@id='_dissactivesubstances_WAR_dissactivesubstancesportlet_disas_substance_name']"
+    echa_search_xpath = "//*[@id='_dissactivesubstances_WAR_dissactivesubstancesportlet_disas_substance_name']"
 
-    search_bar = wait_loading(xpath_search_echa, browser)
+    search_bar = wait_loading(echa_search_xpath, browser)
     search_bar.send_keys(casno)
     search_bar.send_keys(Keys.ENTER)
    
@@ -97,8 +97,8 @@ def search_echa_bio(casno, browser):
     time.sleep(2)
     browser.execute_script("window.scrollTo(0, 1080)")
     time.sleep(2)
-    xpath_echa_bio = "//*[@id='p_p_id_dissactivesubstances_WAR_dissactivesubstancesportlet_']/div/div/div[3]"
-    result = wait_loading(xpath_echa_bio, browser)
+    echa_bio_xpath = "//*[@id='p_p_id_dissactivesubstances_WAR_dissactivesubstancesportlet_']/div/div/div[3]"
+    result = wait_loading(echa_bio_xpath, browser)
 
     if "No results were found" in result.text:
         return "X"
@@ -114,7 +114,8 @@ def search_IARC(casno):
         if casno in str(casnum_IARC):
             return "O"
     return "X"
-    
+
+
     
     
 

@@ -7,7 +7,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from xml.etree.ElementTree import parse
 import time
 from excel_load import *
-from selenium.webdriver.support.select import Select
 
 def create_browser():
     options = webdriver.ChromeOptions()
@@ -46,7 +45,7 @@ def wait_presence_loading(xpath, browser):
         print("검색결과가 없다는 요소를 찾을 수 없습니다.")
         return "O"
 
-def send_as_search_bar(casno, browser, xpath):
+def send_casno_by_enter(casno, browser, xpath):
     search_bar = wait_loading(xpath, browser)
     search_bar.send_keys(casno)
     search_bar.send_keys(Keys.ENTER)
@@ -109,7 +108,7 @@ def search_echa_bio(casno, browser):
     accept_btn.click()
 
     echa_search_xpath = "//*[@id='_dissactivesubstances_WAR_dissactivesubstancesportlet_disas_substance_name']"
-    send_as_search_bar(casno, browser, echa_search_xpath)
+    send_casno_by_enter(casno, browser, echa_search_xpath)
    
     # 페이지 맨아래로 스크롤
     time.sleep(2)
@@ -141,7 +140,7 @@ def search_ntp(casno, browser):
     
     ntp_search_xpath = "//*[@id='datatable_filter']/label/input"
 
-    send_as_search_bar(casno, browser, ntp_search_xpath)
+    send_casno_by_enter(casno, browser, ntp_search_xpath)
 
     ntp_result_xpath = "//*[@id='datatable_info']"
     result = wait_loading(ntp_result_xpath, browser)
@@ -159,7 +158,7 @@ def search_red(casno, browser):
     
     red_search_xpath = "//*[@id='P1_CODE_SEARCH']"
 
-    send_as_search_bar(casno, browser, red_search_xpath)
+    send_casno_by_enter(casno, browser, red_search_xpath)
 
     red_result_xpath = "//*[@id='main']"
     result = wait_loading(red_result_xpath, browser)
@@ -178,7 +177,7 @@ def search_nite(casno, browser):
     
     nite_search_xpath = "//*[@id='txNumSh']"
 
-    send_as_search_bar(casno, browser, nite_search_xpath)
+    send_casno_by_enter(casno, browser, nite_search_xpath)
 
     nite_result_xpath = "//*[@id='content-area']/div[4]"
     result = wait_loading(nite_result_xpath, browser)
@@ -195,7 +194,7 @@ def search_atsdr(casno, browser):
     browser.get(url)
     
     atsdr_search_xpath = "//*[@id='ContentPlaceHolder1_txtSearch']"
-    send_as_search_bar(casno, browser, atsdr_search_xpath)
+    send_casno_by_enter(casno, browser, atsdr_search_xpath)
 
     atsdr_result_xpath = "//*[@id='ContentPlaceHolder1_lblSearchCount']"
     result = wait_loading(atsdr_result_xpath, browser)
@@ -212,7 +211,7 @@ def search_aicis(casno, browser):
     browser.get(url)
     
     aicis_search_xpath = "//*[@id='assessment-cass-input']"
-    send_as_search_bar(casno, browser, aicis_search_xpath)
+    send_casno_by_enter(casno, browser, aicis_search_xpath)
 
     aicis_result_xpath = "//*[@id='casitemnoresult']"
     result = wait_loading(aicis_result_xpath, browser)
@@ -229,7 +228,7 @@ def search_oecd(casno, browser):
     browser.get(url)
     
     oecd_search_xpath = "//*[@id='ctl00_ContentPlaceHolder1_CasnumTextBox']"
-    send_as_search_bar(casno, browser, oecd_search_xpath)
+    send_casno_by_enter(casno, browser, oecd_search_xpath)
 
     oecd_result_xpath = "//*[@id='col_middle']/table"
     result = wait_loading(oecd_result_xpath, browser)
